@@ -1,0 +1,326 @@
+@import "colors";
+@import "mixins";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  background-color: $VeryDarkBlue;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  @include tablet {
+    align-items: center;
+  }
+}
+section {
+  width: 90vw;
+  @include desktop {
+    width: 940px;
+  }
+}
+
+.topBgc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 220px;
+  background-color: $VeryDarkBlue;
+  z-index: -3;
+  border-radius: 0 0 20px 20px;
+}
+.container {
+  @include desktop {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1320px;
+  }
+}
+.PrimTextDarkMode {
+  color: $White;
+}
+.SecTextDarkModeColor {
+  color: $DescText;
+}
+.PrimTextLightMode {
+  color: $VeryDarkBlue;
+}
+.SecTextLightModeColor {
+  color: $DarkGrayishBlue;
+}
+.TopBgcLight {
+  background-color: $VeryPaleBlue;
+}
+
+.body__light {
+  background-color: $White;
+}
+
+.sectionTitle {
+  text-align: left;
+  @include desktop {
+    align-self: flex-start;
+    margin-left: 20px;
+  }
+  &--overview {
+    margin-top: 30px;
+  }
+}
+.totalFollowText {
+  font-weight: 700;
+  @include desktop {
+    align-self: flex-start;
+    margin-left: 20px;
+  }
+}
+.topHr {
+  margin: 20px 0 20px 0;
+  opacity: 0.5;
+  @include desktop {
+    opacity: 0;
+  }
+}
+.mode {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include desktop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+  }
+
+  &__name {
+    // color: $DescText;
+    font-weight: 700;
+    @include tablet {
+      margin-right: 15px;
+    }
+  }
+  // Switch
+  .mode__switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+
+    & input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .mode__slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $ToggleDark;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+
+      &:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background: $VeryDarkBlue;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+    }
+  }
+
+  input:checked + .mode__slider {
+    background: $ToggleLight;
+  }
+
+  input:focus + .mode__slider {
+    box-shadow: 0 0 1px $ToggleLight;
+  }
+
+  input:checked + .mode__slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+    background: $White;
+  }
+
+  /* Rounded sliders */
+  .mode__slider.mode__slider--round {
+    border-radius: 34px;
+  }
+  .mode__slider.mode__slider--round:before {
+    border-radius: 50%;
+  }
+}
+.cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @include tabletXl {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  border-radius: 10px;
+  overflow: hidden;
+  min-width: 300px;
+  background-color: $DarkDesaturatedBlue;
+  &:hover {
+    background-color: hsl(229, 24%, 33%);
+  }
+
+  @include tablet {
+    justify-content: space-between;
+    min-width: 368px;
+    // max-width: 368px;
+    // margin: 20px;
+  }
+  @include tabletXl {
+    justify-content: space-between;
+    min-width: 300px;
+    // margin: 20px;
+  }
+  @include desktop {
+    justify-content: space-between;
+    min-width: 190px;
+    margin: 10px;
+  }
+  &__light {
+    background-color: $LightGrayishBlue;
+    &:hover {
+      background-color: hsl(231, 26%, 85%);
+    }
+  }
+
+  &__hr {
+    width: 100%;
+    height: 5px;
+    border: 0;
+    &--facebook {
+      background-color: $Facebook;
+    }
+    &--twitter {
+      background-color: $Twitter;
+    }
+    &--instagram {
+      background-image: $Instagram;
+    }
+    &--youtube {
+      background-color: $YouTube;
+    }
+  }
+  &__iconAndNameContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    &--spacebetween {
+      width: 100%;
+      padding: 0 20px 0 20px;
+      justify-content: space-between;
+    }
+  }
+  &__icon {
+    height: 20px;
+    width: 20px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 5px;
+    &--facebook {
+      background-image: url("/img/icon-facebook.svg");
+    }
+    &--twitter {
+      background-image: url("/img/icon-twitter.svg");
+    }
+    &--instagram {
+      background-image: url("/img/icon-instagram.svg");
+    }
+    &--youtube {
+      background-image: url("/img/icon-youtube.svg");
+    }
+  }
+  &__text {
+    margin: 5px;
+    // color: $DescText;
+    font-weight: 700;
+    &--followers {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-weight: 400;
+      margin: 0;
+    }
+    &--up {
+      color: $LimeGreen;
+    }
+    &--down {
+      color: $BrightRed;
+    }
+  }
+  &__numberDescSub {
+    font-size: 50px;
+    // color: $White;
+    font-weight: 700;
+  }
+  &__todayStats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+  }
+  &__arrow {
+    width: 10px;
+    height: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    &--up {
+      background-image: url("/img/icon-up.svg");
+    }
+    &--down {
+      background-image: url("/img/icon-down.svg");
+    }
+  }
+  &__statsNumberAndProcent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px 20px 20px;
+  }
+  &__statNumber {
+    font-size: 30px;
+    font-weight: 700;
+  }
+  &__procent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
